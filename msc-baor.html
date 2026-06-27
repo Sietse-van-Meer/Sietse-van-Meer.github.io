@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MSc Thesis — Objective-Guidance Algorithms (O-GAs)</title>
+  <link rel="stylesheet" href="layout.css" />
+  <meta name="description" content="MSc thesis by Sietse van Meer — Comparing Objective-Guidance Algorithms for Supply Chain Planning Problems (1DPP), Tilburg University (2024)." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="logo" href="index.html">Sietse van Meer</a>
+      <div class="navbar-items">
+        <a href="index.html">Home</a>
+        <a href="projects.html">All projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" style="margin-top: 30px;">
+    <section class="card">
+      <h1>Comparing Objective-Guidance Algorithms for Supply Chain Planning Problems</h1>
+      <h2>MSc Thesis: Business Analytics and Operations Research</h2>
+
+      <div class="thesis-meta">
+        <div class="meta-row">
+          <span class="meta-label">Program:</span>
+          <span class="meta-value">MSc Business Analytics &amp; Operations Research, Tilburg University (2024)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Title:</span>
+          <span class="meta-value">Comparing Objective-Guidance Algorithms for Supply Chain Planning Problems</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Supervisors:</span>
+          <span class="meta-value">Dr.ir. Pieter Kleer &amp; Dr.ir. Dylan Huizing (OMP)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Full thesis:</span>
+          <span class="meta-value">
+            <a class="chip" href="https://tilburguniversity.on.worldcat.org/search/detail/1492249863?queryString=Comparing%20Objective-Guidance%20Algorithms%20for%20Supply%20Chain%20Planning%20Problems&idDetect=true&clusterResults=false&groupVariantRecords=true&bookReviews=off" target="_blank" rel="noopener">WorldCat record</a>
+          </span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Code:</span>
+          <span class="meta-value">
+            <a class="chip" href="https://github.com/Sietse-van-Meer/MSc-BAOR-Thesis-Code-Comparing-Objective-Guidance-algorithms-for-Supply-Chain-Planning-Problems/" target="_blank" rel="noopener">Github repository</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="thesis-image-large">
+        <img src="images/1DPP in practice.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      
+      <h2>Introduction</h2>
+      <p>
+        This thesis was conducted in collaboration with OMP, a supply chain planning software company. It was supervised by Pieter Kleer (Tilburg University) and Dylan Huizing (OMP). 
+        </p>
+        <p>In this thesis, we consider a supply-chain planning problem in which we aim to schedule a set of incoming jobs as efficiently as possible on a single machine (a plant), while balancing overload (overtime) against tardiness (late completion).
+        </p> <p>
+        The plant has a fixed amount of regular capacity. Using capacity beyond this level is costly, for example because it requires overtime work, extra staff, or activating backup machines. Likewise, if jobs have due dates, completing them after their deadline (i.e., incurring tardiness) is also costly, either through explicit penalties or through reputational damage.
+        </p> <p>
+        The plant therefore faces a continuous trade-off: it can work overtime to finish jobs earlier, or it can avoid overload and accept that some jobs will be completed late. We formalize this trade-off in what we call the 1-Dimensional Planning Problem (1DPP). Given a pre-scheduled set of jobs, the goal is to reschedule them, i.e., choose improved start times for each job, so as to minimize an objective function that combines overload and tardiness.
+          </p> <p>
+        The problem is further complicated by the fact that jobs differ in their release dates, processing times, workloads (e.g., the number of people required), and due dates. Moreover, unlike in standard single-machine scheduling, multiple jobs may run simultaneously. For this reason, we refer to the setting as a planning problem rather than a traditional scheduling problem.
+      </p>
+
+      <div class="thesis-image">
+        <img src="images/1DPP balans.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+            <h2>Example</h2>
+      <p>In this brief subsection, we go over a simplified example of the 1DPP. Below, I put a screenshot of the thesis paper in which I explain the variables of the problem.</p>
+      <div class="thesis-image-large">
+      <img src="images/1DPP variables.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      This helps us understanding the following 1DPP example in which we plan 5 jobs to minimize the objective function. The top table is a visual representation of the information that comes from the table on the bottom. In here we find for each job all the necessary 
+      details: the starting time (decision variable x_j), the duration of the job, the weight of te job and the due date of the job. 
+      <div class="thesis-image-large">
+      <img src="images/1DPP example.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      To evaluate the planning, we have to find the objective function value. This consists of a weighted sum of Total Overload and Total Tardiness, usually weighted by alpha and beta, which we gave value 10 and 1 in this example. 
+      To find the total overload, let's look at the snippet below:
+      <div class="thesis-image-large">
+      <img src="images/1DPP overload.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      Then we can also find the tardiness and subsequently we can evaluate the objective function:
+
+      <div class="thesis-image-large">
+      <img src="images/1DPP tardiness.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      This concludes our example. It is the objective to minimize this objective function. For completeness, I also provide the mathematical problem formulation of the 1DPP. 
+      <div class="thesis-image-large">
+      <img src="images/1DPP formulation.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      <h3>Solving the 1DPP</h3>
+      <p>
+        In the 1DPP, our objective is to find the optimal planning of jobs to minimize the objective function. For our earlier example using five jobs, this may be relatively easy, as we have only five jobs, ten time periods (minutes/hours),
+        so the amount of options are limited. Besides, using reasoning, we could see that overload is much more costly (alpha = 10) tan tardiness (beta = 1), so by spreading out we already minimize the objective function to a great extent.
+        It may still be difficult to know for sure you found the best solution. For this example, we can ask the computer to solve the example exactly using integer linear programming (Gurobi).  </p>
+        <p>
+        However, it is not surprising that we find it difficult to know for sure that we found the best solution. 
+        In technical terms, the problem is strongly NP hard, and we prove this in the paper via reductions from the 2 Partition and 3 Partition problems. 
+        This means that computational difficulty grows rapidly with instance size, and there is no known algorithm that can solve all instances efficiently, for example in polynomial time. 
+        As a result, exact methods, algorithms that guarantee the global optimum and terminate only once it is found, quickly become impractical for larger instances.
+        </p> <p>
+        We therefore focus on heuristics, faster algorithms that trade optimality guarantees for tractable runtimes and typically produce high quality approximate solutions. 
+        Our starting point is the initial, unoptimized plan, which we improve using a Local Search (LS) heuristic. 
+        LS repeatedly proposes random moves, shifting the start time of a job j, and accepts a move if it improves, or at least does not worsen, the objective value, otherwise it rejects the move. 
+        This allows us to evaluate many moves per second and iteratively improve the plan. 
+        Eventually, however, the search often stagnates, it reaches a local optimum, meaning that no improving move can be found within the current neighborhood, even though the solution may still be far from globally optimal. </p>
+        
+        <div class="thesis-image-large">
+        <img src="images/1DPP LS.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      <div class="thesis-image-large">
+        <img src="images/1DPP LS stuck.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      <p>
+        One of the main aims of this thesis is to move past these local optima in an efficient way. 
+        State of the art algorithms such as Tabu Search, TS, and Simulated Annealing, SA, often allow random moves and even deliberately worsening moves in order to escape a local optimum. 
+        We hypothesize that these random worsening moves can be wasteful, because they do not use any information about whether a step is likely to lead to a better region of the solution space. 
+        In the figure below, for example, we do not really know whether moving left or right is the better decision.
+        </p>
+        <div class="thesis-image-large">
+        <img src="images/LS weakness.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+        <p>
+        We therefore hypothesize that it can be more efficient to improve the objective function in a more guided way. For that, we study what we call Objective Guidance Algorithms, or O-GAs. 
+        This is the name we give to a class of single solution metaheuristics that build on local search, but add carefully chosen guiding terms to the objective function once the search gets stuck in a local optimum.
+        </p>
+
+         <p>
+        The idea is simple, the guiding terms temporarily change what the algorithm focuses on, which can push the search out of the local optimum without having to accept worse moves. 
+        As an example, we can add a term such as Load squared, which penalizes clusters of jobs more heavily and encourages the plan to spread jobs out over time. 
+        After the algorithm escapes the local optimum, the guiding term can be reduced or switched off again, so the search returns to the original objective function.
+        </p>
+
+        In the next 3 figure, I visualize this idea. The orange line represents the augmented objective function. By optimizing this temporarily modified objective, the algorithm can move beyond the original local optimum and, in the best case, reach a much better region, sometimes even the global optimum. 
+        In practice we often do not reach the global optimum, but the mechanism can still lead to substantial improvements over plain local search.
+        <div class="thesis-image-large">
+        <img src="images/O-GA example.png" alt="Illustration of O-GAs and 1D planning problem" />
+        </div>
+    
+      <h2>Objective-guidance algorithms (O-GAs)</h2> 
+      O-GAs are algorithms that extend local search by augmenting the objective function when it is stuck in a local optimum. We will show the mechanisms of O-GAs using an example, in which we show in three figures an intial planning 
+      which we first optimize using local search until it reaches a local optimum and the algorithm cannot make equal or improving moves anymore (=stuck). 
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 0.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 0-1.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 1.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      As the local search algorithm is stuck, the Objective-Guided Algorithm (O-GA) mechanisms will kick in, augmenting the objective function, making it essentially an augmented objective function, F. The terms it adds come from experience with the algorithm and its plannings.
+      From earlier experiments, we learned that the plannings tend to stack too much load in early periods. With this information, we can use the O-GA algorithm, which can augment a (Load)^2 term to our objective function. 
+      This quadratically penalizes load, making the algorithm move towards solutions which spread load out more evenly. 
+
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 2.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+        Given this new augmented objective function F, we can now both evaluate the original and augmented objective function. Note, the algorithm uses the augmented objective function from this point, but it is still insightful to also 
+        evaluate the original objective function, as in the end we are interested only in this value. Given the current situation, the O-GA wants to improve the augmented objective function by move job 1 a single step to the right. 
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 3.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      After the job 1 move, we see that the augmented objective function indeed improved and our original objective function worsened. The O-GA then want to move job 4 a single step to the right. 
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 4.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      <p>After the job 4 move, we now see an improvement in both augmented objective function and original objective function. While this is not a local optimum with regards to the augmented objective function (we can move job 3 to the right for example)
+      , it is a local optimum with regards to the original objective function. In our implementations of O-GAs, we would also return to the original objective function to avoid alienation with regards to the original objective function.
+      Including such mechanisms would make the algorithm end up more likely in this global optimum solution with regards to the original objective function. </p>
+      <div class="thesis-image-large">
+        <img src="images/O-GA example 5.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+
+      <h2>O-GAs:  ω− w algorithm and GLS-Q</h2>
+      <p>In this thesis, we represent O-GAs using two distinct algorithms. First, using the idea of a related master thesis by Elise Deen, we turn on and off the augmented term. As elaborated in previous paragraph, the turning on (w phase) 
+      and off (ω phase) of the algorithm can help steering the algorithm towards promising areas, without alienating it from the algorithm original objective function. 
+      </p>
+      <p>The GLS-Q algorithm splits the algorithm up in quarters, and only penalizes overload in the quarter where it hurts the original objective function the most. It can stack multiple penalties, but after stacking three penalties, it was 
+        found most effective to reset the penalties to avoid alienation with regards to the original objective function. The idea of GLS-Q is that we generally want to stick as much as possible with the original objective function and 
+        possibly want to penalize problem areas harder if that helps to effectively escape local optima. 
+      </p>
+
+      <p>In the grander scheme of solution methods to for example solve the 1DPP, we classify O-GAs as single-solution metaheuristics that augment the objective function to steer LS towards better quality solutions. 
+      </p>
+      <div class="thesis-image-large">
+        <img src="images/Solution methods.png" alt="Illustration of O-GAs and 1D planning problem" />
+      </div>
+      <h2>Research question</h2>
+      <p>How do O-GAs like GLS-Q and the ω − w algorithm perform compared to state-of-the-art algorithms like Simulated Annealing and Tabu Search?</p>
+
+      <h2>Methodology</h2>
+      In this thesis, we put emphasis on evaluating the algorithms as fair as possible. We put special emphasis on 
+      <ul>
+        <li>
+          <strong>Dataset variety</strong><br />
+          We use 21 datasets, ranging from small instances, 100 jobs with a neighborhood of 20 moves,
+          to large instances, 800 jobs with neighborhoods up to 160 moves.
+        </li>
+        <li>
+          <strong>Standardized implementation</strong><br />
+          We standardize the codebase to isolate performance differences caused by algorithm structure,
+          and to minimize the influence of coding choices.
+        </li>
+        <li>
+          <strong>Parameter tuning without overfitting</strong><br />
+          We tune parameters on a subset of training datasets, 6 to 9 datasets, then select one configuration
+          and apply it across all datasets.
+        </li>
+      </ul>
+      
+      We compared the performance of the algorithms in four dimensions:
+  <ul>
+  <li>
+    <strong>Mean objective function value</strong><br />
+    We estimate average solution quality by running each algorithm 32 times per dataset, using fixed random seeds for reproducibility, and averaging the objective value over the last 30 runs, excluding two warm up runs due to Numba JIT compilation.
+  </li>
+
+  <li>
+    <strong>Mean standard deviation of the objective function value</strong><br />
+    We measure solution stability by computing, per dataset and algorithm, the standard deviation across runs, then averaging these values, so we capture how consistent an algorithm is, not just how good it is on average.
+  </li>
+
+  <li>
+    <strong>Parameter sensitivity</strong><br />
+    We assess how strongly performance depends on parameter settings, using results from the parameter tuning tests to identify which algorithms are robust across a range of settings and which deteriorate noticeably when parameters are not near optimal.
+  </li>
+
+  <li>
+    <strong>Mean algorithm complexity</strong><br />
+    We approximate computational complexity by standardizing iteration counting across algorithms and measuring execution time for a fixed number of iterations on representative datasets of increasing size, giving a practical proxy for speed and scalability.
+  </li>
+  </ul>
+
+
+      <div class="thesis-image">
+        <img src="images/Assessment Criteria.png" alt="Placeholder charts comparing LS, TS, SA, and O-GAs" />
+      </div>
+
+      <h2>Results</h2>
+      <p>Results of the Mean objective function value test for dataset 1 (small dataset, 100 jobs) are shown below. The points are time stamps in which we extract the objective function value from the algorithm. </p>
+      
+      <p>The blue line is the local search algortihm, which is called RFILS this algorithm evaluates randomly from the eligible moves and it executes the move if it is improving, making it a Random First Improving Local Search (RFILS). 
+      In our experiments, we start our evaluation from the timestamp the RFILS gets stuck in a local optimum, which we define as an x amount of moves without objective function improvement, 
+      where x = 4 * number of jobs * theoretical number of moves in the neighborhood. For dataset 1 this means the RFILS is stuck when we have 4*100*10 = 4000 consecutive moves without objective function improvement. </p>
+
+      <p>The O-GAs are represented by the red and yellow line, and its state-of-the-art main competitors are shown in green (TS) and purple (SA).</p>
+
+      <div class="thesis-image-large">
+        <img src="images/1DPP results.png" alt="Placeholder charts comparing LS, TS, SA, and O-GAs" />
+      </div>
+
+      <p>The complete results are shown in the image below. We find that, while O-GAs are effective in improving the objective function, simulated annealing (SA) is most effective in almost all dimensions. Its only weakness lies in the
+      parameter tuning, in which I find it sensitive. However, given a reasonable set parameters, it outperforms the other algorithms. O-GAs are a strong second, but they seem not as effective in moving the algorithm towards the 
+      most promising areas of the solution space. It seems that SA's cooling strategy, that is making many random and worsening moves but slowly focussing more on moves that improve the solution space, results in a very effective 
+      balance of exploration and exploitation. This shows that, while SA does many wasteful worsening moves, it also does many moves that can move the solution towards the most promising areas of the solution space. </p>
+      
+      <p> We hypothesize that the underlying reason for SA to outperform O-GAs can be found in the source of diversification. O-GAs can only diversify by strategically activating one or a few guiding terms, while SA with its strategical
+      acceotance of worsening moves depending on a cooling termperature, allows for a more diverse moves and therefore more often find higher quality solutions. </p>
+
+      <p>We also evaluated the performance of hybrid algorithms, which up to some point run one algorithm (RFILS) and then switch to the in the long-term superior SA. Our findings do not find hybrid algorithms beating the regular SA algorithm.
+      This may not be surprising. Combining algorithms may result in more complexity, slowing down the algorithm. Moreover, by first letting another algorithm run the algorithm to a local optimum, we may already narrow the solution space
+      to an area in which the higher quality areas are thougher to reach. In the short term however, it may be useful to combine RFILS with SA, as in the short term RFILS can guarantee a quick solution of decent quality, and one can then 
+    use SA to find higher quality solution with more time. This hybrid can guarantee a decent level solution, even if SA parameters are off.</p>
+
+      <div class="thesis-image-large">
+        <img src="images/1DPP complete results.png" alt="Placeholder charts comparing LS, TS, SA, and O-GAs" />
+      </div>
+
+
+      <h2>Conclusion</h2>
+      In conclusion, O-GAs are effective in improve LS beyond the local optima consistent with Deen (2024) findings. However, SA had, given decent parameter settings, the highest quality results in terms of mean objective value and standard 
+      deviation in the long run. Therefore, we only recommend:
+      <ul>
+      <li>Using local search (RFILS) for quick and decent quality results.</li>
+      <li>Use simulated annealing for high-quality solutions with careful parameter tuning. One can use a hybrid algorithm, combining RFILS with SA, to avoid performance drops as a consequence of poor parameter settings. </li>
+      <li>Use Objective-Guidance Algorithms (O-GAs) for problems in which one has an idea for effective guiding terms, but little intuition/confidence in SA parameter settings.  </li>
+      </ul>
+
+      <div class="thesis-image-large">
+        <img src="images/keep calm O-GAs.png" alt="Placeholder charts comparing LS, TS, SA, and O-GAs" />
+      </div>
+
+      <h2>2025 note</h2>
+      <p>
+      Looking back a year later, this thesis was truly a continuous learning process. In the beginning, I completely underestimated the importance of efficient and standardized code. To compare algorithms effectively, the code must be as clean, simple, and consistent as possible. Moreover, techniques such as parallelization, just-in-time (JIT) compilation, and other performance optimizations can make a tremendous difference.
+      </p>
+      <p>
+        By integrating Numba, I managed to accelerate the computations by several multiples, which enabled me to analyze datasets that were more than twice as large in a fraction of the time. This optimization essentially saved the thesis and my sanity. I still remember a moment around July 2024, when I occupied six computers in the library to run six different algorithms simultaneously in an attempt to save time. After implementing Numba and standardizing the code, my computer could better handle the computational load.
+      </p>
+      <p>
+        The comparison of coding languages in terms of speed continues to intrigue me, especially for loop-intensive problems such as those used in this thesis. I still plan to conduct a small, fair, and transparent comparison test to illustrate how large the performance differences can be for general algorithmic tasks.
+      </p>
+      <p>
+        Another dimension that we did not explore, but which could further improve performance, is the use of adaptive neighborhoods. In this thesis, the neighborhood structure was kept constant for simplicity. However, it is quite possible that adaptive neighborhoods could significantly influence the algorithm’s outcomes, although the direction and magnitude of that effect remain to be investigated.
+      </p>
+      <p>
+        Overall, this project was a valuable and rewarding experience. It was a pleasant balance of theory and coding, with a practical application. I also hope that OMP, the company with which this thesis was conducted, gained a better understanding of both the potential and the limitations of objective-guided algorithms. Finally, I am still grateful for the guidance and constructive collaboration of Dr. ir. Pieter Kleer and Dr. ir. Dylan Huizing throughout this thesis.
+      </p>
+    </section>
+
+    <section class="card" style="margin-top: 24px;">
+      <h2>Contact</h2>
+      <div class="contact-icons">
+        <a href="mailto:s.vanmeer99@gmail.com" class="icon-link" aria-label="Send email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/sietse-van-meer/" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn profile">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/Sietse-van-Meer" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Sietse van Meer</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

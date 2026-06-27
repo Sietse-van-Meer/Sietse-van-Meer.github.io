@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BSc Thesis — Currency Competition and Price Stability</title>
+  <link rel="stylesheet" href="layout.css" />
+  <meta name="description" content="BSc thesis by Sietse van Meer — Currency competition and price stability." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="logo" href="index.html">Sietse van Meer</a>
+      <div class="navbar-items">
+        <a href="index.html">Home</a>
+        <a href="projects.html">All projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" style="margin-top: 30px;">
+    <section class="card">
+      <h1>Currency competition and price stability</h1> 
+      <h2>BSc Thesis: Economie en Bedrijfseconomie</h2>
+
+      <div class="thesis-meta">
+        <div class="meta-row">
+          <span class="meta-label">Program:</span>
+          <span class="meta-value">BSc Economie en Bedrijfseconomie, Economics &amp; Society specialization, Tilburg University (2020)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Title:</span>
+          <span class="meta-value">Currency competition and price stability</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Supervisor:</span>
+          <span class="meta-value">Dr. José Carreño Bustos</span>
+        </div>
+      </div>
+      
+      <div class="thesis-image">
+        <img src="images/Currency competition cover.png" alt="Illustration of currency competition" />
+      </div>
+      
+      <h2>Key terms</h2>
+      <div class="thesis-meta">
+        <div class="meta-row">
+          <span class="meta-label">Currency competition:</span>
+          <span class="meta-value">A system in which money is privately issued and users can pay, lend, save using their preferred currency. In such a system it is possible to pay the groceries in euros, but take a mortgage in Bitcoin.</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Inside money:</span>
+          <span class="meta-value">This type of money is like a redeemable private liability (credibly asset-backed tokens). Because holders can redeem, issuers face real costs when they overissue.</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Outside money:</span>
+          <span class="meta-value">This type of money is not asset-backed, for example by gold or a redeemable claim on an issuer. It runs entirely on trust like today’s fiat money, although some would say that all money ultimately relies on trust. Since there is no contractual redemption, the issuer has a weaker commitment to refrain from overissuing.</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Clearing</span>
+          <span class="meta-value">
+            Clearing is the process of confirming transactions and calculating the net obligations between institutions. Settlement is the final transfer of funds to discharge those obligations. If more customers of Bank A pay customers of Bank B than the other way around, then after netting Bank A owes Bank B. Bank A must then settle using high-quality funds (typically central bank money, such as reserve balances, via the payment/settlement system). Persistent net outflows reduce Bank A’s liquidity position, so to keep settling it may need to borrow reserves (e.g., in money markets), use central bank facilities against collateral, sell liquid assets, attract deposits at higher rates, or slow new lending. These responses raise marginal funding and liquidity-management costs and therefore can discipline how far the bank can expand. In competitive markets, higher costs may show up as less attractive pricing (for example higher loan rates, lower deposit rates, or higher fees), which can affect customer demand and retention.
+          </span>
+        </div>
+      <div class="white-rule"></div>
+      <div class="white-rule"></div>
+      <div class="white-rule"></div>
+      <div class="white-rule"></div>
+      </div>
+
+      <h2>Introduction</h2>
+      <p>This thesis asks whether price stability improves when people can save, spend, pay taxes, and lend in their preferred currency, with multiple monies competing by brand, rules, and reputation. When I wrote it, cryptocurrencies were rising and there was real discussion about whether they could function as a medium of exchange and perhaps even a unit of account alongside the euro or the dollar. That debate inspired the project.</p>
+
+
+      <h2>Research question</h2>
+      <p>Does currency competition foster price stability?</p>
+
+      <h2>The debate, in brief</h2>
+
+      <p>
+        The debate centers on whether currency competition would foster price stability. For simplicity, we refer to supporters of the idea as proponents and opponents as critics.
+      </p>
+
+      <div class="white-rule"></div>
+      <p>
+        <strong>Proponents</strong> argue that competition disciplines issuers: if a currency loses purchasing power, users can switch to better alternatives. That threat of exit pushes issuers to keep inflation low and maintain stability.
+      </p>
+
+      <div class="white-rule"></div>
+      <p>
+        <strong>Critics</strong> warn that multiple currencies could fragment markets, make monetary and fiscal policy less effective during recessions, and reduce the everyday convenience of using one widely accepted unit of account.
+      </p>
+
+      <p>
+        This thesis is a literature review. We first assess the hypothesis using theory, then compare those insights with historical evidence.
+      
+      <div class="thesis-image-large">
+        <img src="images/bsc procon.png" alt="Illustration of currency competition" />
+      </div>
+
+      <h2>Theory/economic reasoning</h2>
+
+      <p>
+        First, we tried to find an answer using the existing theoretical work on currency competition. To give the idea its best chance, I start from a best-case assumption: competition initially succeeds at fostering price stability. Consider an imaginary example in which we are entrepreneurs and launch a currency that promises lower expected inflation than the market leader while we still seek to maximise our profits. 
+      </p>
+
+      <p>
+        Suppose we launch our coin, <em>Trustcoin</em>, to be less inflation-prone than Newcoin. At first only a small group uses Trustcoin. To attract adoption we commit to low and predictable inflation. That strategy is profitable because it builds reputation and grows the user base; while Trustcoin is small, keeping inflation low maximises profits in both the short and the long run.
+      </p>
+
+      <p>
+        The incentives change once Trustcoin becomes widely adopted. If money is not redeemable (i.e., holders cannot claim a fixed asset in exchange), there is no mechanical constraint forcing the issuer to maintain purchasing power. At that point, a trusted issuer can gain by surprise expansion: increasing the supply, spending the newly issued coins before prices fully adjust, and capturing a windfall at the expense of existing holders whose balances lose purchasing power. This creates a time-consistency problem: the policy that built trust is no longer the policy that maximizes profits once the currency is widely adopted. We therefore conclude that, even in the best-case scenario, currency competition leads to an unstable equilibrium. 
+      </p>
+     
+      <p>
+        Rational users anticipate this incentive. To hold Trustcoin at scale, they demand compensation for expected dilution: a higher required yield, tighter contractual safeguards, or they hold less of it. That compensation is a real economic cost. Even if realised inflation remains low, the issuer (or the system) must pay for credibility through interest-like returns, strong redemption terms, robust audits, or other costly commitments. In that sense, discipline often arrives through the price of expected inflation rather than through current inflation itself.
+      </p>
+
+      <p>
+        If the core problem is time inconsistency, the natural next question is how an issuer can credibly commit to restraint. In practice, the temptation to overissue can be neutralized, or at least made costly, in three ways:
+      </p>
+
+      <ol type="i">
+        <li>
+          <strong>Redemption or convertibility</strong> — makes the currency a claim on a reference asset (e.g., central-bank money, short-dated government bills, or an index). Excess issuance then triggers redemptions that drain reserves. This is the inside-money design.  
+        </li>
+        <li>
+          <strong>Buyback or price-guarantee clauses</strong> — the issuer commits to repurchase at a target price or within a band. When the market price slips, the issuer buys back and shrinks supply, supporting the peg or band. This is economically similar to redemption if the commitment is credibly backed by high-quality reserves and enforceable terms. Having to defend the peg/band would then drain the reserves. 
+        </li>
+        <li>
+          <strong>Hard quantity rules</strong> — removes discretion over the money supply with strict issuance paths or caps, for example an algorithmic schedule as in Bitcoin. This rules out high-inflation paths, but it comes at the cost of rigidity and potentially higher price volatility in the currency's own unit.
+        </li>
+      </ol>
+
+
+      
+      <div class="thesis-image-large">
+        <img src="images/bsc resultaat1.png" alt="Illustration of currency competition" />
+      </div>
+
+  <h2>Historical Evidence</h2>
+
+  <p>
+    Currency competition has also been tried in practice, with mixed results for price stability. 
+  </p>
+
+  <p>
+    In <strong>Scotland (1716–1845)</strong>, many note-issuing banks offered brand-specific, redeemable claims and
+    cleared each other’s liabilities frequently. Overissuers lost reserves quickly through adverse clearings, and
+    purchasing power remained broadly stable with smooth convertibility.
+  </p>
+
+  <p>
+    In <strong>nineteenth-century Switzerland</strong>, competition improved after the adoption of a common unit, the
+    Swiss franc, while banks continued to compete on reserves. Issuers had to hold and settle in high-quality liquid
+    assets such as specie or central-bank reserves. Any bank that overissued saw its reserves drain at clearing and
+    its funding costs rise. Lower search costs and active clearing supported overall stability.
+  </p>
+
+  <p>
+    In the <strong>United States (1837–1865)</strong>, the experience was mixed. While some regions currency competition seemed to work fine, some regions saw fragmented regulation, uneven supervision, and weak clearing arrangements result in “wildcat” banking and big losses.
+    Where redeemability and transparent clearing existed, competition tended to stabilize prices. But, where those institutions were thin, outcomes often deteriorated.
+  </p>
+
+  <p>
+    More recently, <strong>dollarization</strong> offers a modern instance of currencies competing. In high-inflation environments,
+    households and firms shift savings, prices, and even contracts into dollars (or euros), effectively importing
+    credibility from abroad. Full dollarization episodes (such as Ecuador and
+    El Salvador) and partial, de facto dollarization episodes show how competition can cap feasible inflation by threatening incumbent issuer's market share, echoing the proponent's argument. 
+    However, dollarization comes with trade-offs: a loss of monetary sovereignty, since you no longer control the money supply, interest rates, or the exchange rate; a weaker ability for the central bank to act as lender of last resort; the loss of seigniorage income; and higher risks to financial stability
+      </p>
+
+    <div class="thesis-image-large">
+        <img src="images/bsc resultaat2.png" alt="Illustration of currency competition" />
+    </div>
+
+      <h2>Conclusion</h2>
+      <p>
+        It appears that currency competition can promote price stability, but mainly when issuers are tied to credible commitments that make overissuing costly or impossible. Without such mechanisms, outside money tends toward instability, as users demand an inflation rent and issuers could be tempted to surprisingly dilute. The historical record aligns with this: competition delivered the best outcomes (in terms of price stability) where redeemability and active clearing made expansion costly in real time (Scotland, much of Switzerland), and it struggled where those institutions were weak or absent (parts of the U.S. free-banking era).
+
+      <h2>2025 note</h2>
+      <p>
+        Looking back, I enjoyed exploring this rather unconventional hypothesis. Reading my thesis back, I feel that I may underestimate the strength of network effects around a shared unit of account. A common currency speeds up trade, simplifies economic calculation, and delivers economies of scale in the infrastructure of money, including payments, security against counterfeiting, supervision, and cash logistics. When I went to Egypt in 2025, I ran into the frictions of opaque prices and slow bargaining. It reminded me how valuable quick, standardized pricing and near-frictionless saving and lending are in the euro area. I would also refine the inflation story. Monetary rules, the formal frameworks that govern how money is issued and managed, matter, but inflation also comes from the real economy. When demand exceeds capacity in energy, labour, or logistics, or when policy changes raise effective costs, such as a VAT increase, prices rise. Whether this becomes ongoing inflation depends on how wages and demand respond.
+    
+    <section class="card">
+      <h2>Contact</h2>
+      <div class="contact-icons">
+        <a href="mailto:s.vanmeer99@gmail.com" class="icon-link" aria-label="Send email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/sietse-van-meer/" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn profile">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/Sietse-van-Meer" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> Sietse van Meer</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

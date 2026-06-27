@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sietse van Meer — Economics & Econometrics</title>
+  <link rel="stylesheet" href="layout.css" />
+  <meta name="description" content="Portfolio of Sietse van Meer — Economics, Econometrics & Public Policy projects." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="logo" href="index.html" aria-label="Go to homepage">Sietse van Meer</a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="navbar-items">
+        <a href="index.html">Home</a>
+        <a href="projects.html">All projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-left">
+        <h1>Hi, I’m
+          <span class="name" aria-label="Sietse van Meer">
+            <span class="name-static">Sietse</span>
+            <span class="surname" data-surname=" van Meer"></span>
+          </span>
+        </h1>
+
+        <p>
+          This site is my personal archive and portfolio, where I share my university theses and side projects.
+          I’m currently part of the Balance of Payments team at De Nederlandsche Bank,
+          focusing on foreign direct investment (FDI) and building tools for data analysis. This team is part of the statistics department of the central bank. Currenlty I am developing towards data engineering.
+        </p>
+
+        <p class="muted">
+          I graduated from Tilburg University in 2024 with an MSc in Business Analytics &amp; Operations Research and an MSc in Financial Economics. 
+        </p>
+
+        <div class="contact-icons">
+          <a href="mailto:s.vanmeer99@gmail.com" class="icon-link" aria-label="Send email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/sietse-van-meer/" target="_blank" rel="noopener" class="icon-link" aria-label="LinkedIn profile">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/Sietse-van-Meer" target="_blank" rel="noopener" class="icon-link" aria-label="GitHub profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        </div>
+
+      </div>
+
+      <div class="hero-right">
+        <img src="images/foto-linkedin (1).png" alt="Portrait of Sietse van Meer" />
+      </div>
+    </section>
+
+    <section id="projects" class="projects container">
+      <h2>Selected Projects</h2>
+
+      <div class="project-grid">   
+        <article class="project-card" id="projects-books">
+          <a href="msc-baor.html" class="card-link">
+            <img src="images/OGA cover.png" alt="MSc BAOR thesis thumbnail" />
+            <div class="project-body">
+              <h3>Comparing objective-guidance algorithms for one-dimensional planning problems</h3>
+              <p>MSc Business Analytics and Operations Research thesis.</p>
+            </div>
+          </a>
+        </article>
+
+
+        <article class="project-card" id="projects-books">
+          <a href="msc-economics.html" class="card-link">
+            <img src="images/Wash trading mechanisms coverimage.jpg" alt="MSc Economics project thumbnail" />
+            <div class="project-body">
+              <h3>Wash trading mechanisms</h3>
+              <p>MSc Financial Economics thesis</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="projects-books">
+          <a href="bsc-ebe.html" class="card-link">
+            <img src="images/Currency competition cover.png" alt="BSc thesis thumbnail" />
+            <div class="project-body">
+              <h3>Currency competition and price stability</h3>
+              <p>BSc Economie en Bedrijfseconomie thesis</p>
+            </div>
+          </a>
+        </article>
+
+
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Sietse van Meer</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

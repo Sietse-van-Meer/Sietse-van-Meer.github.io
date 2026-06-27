@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sietse van Meer — Economics & Econometrics</title>
+  <link rel="stylesheet" href="layout.css" />
+  <meta name="description" content="Portfolio of Sietse van Meer — Economics, Econometrics & Public Policy projects." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Geometry-Dash style cursor trail (drawn to this canvas) -->
+  <canvas id="cursor-trail" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <nav class="navbar container">
+      <a class="logo" href="index.html" aria-label="Go to homepage">Sietse van Meer</a>
+
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="navbar-items">
+        <a href="index.html#about">Home</a>
+        <a href="projects.html">All projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="projects" class="projects container">
+      <h1>All Projects</h1>
+
+      <div class="project-grid">   
+        <article class="project-card" id="projects-books">
+          <a href="msc-baor.html" class="card-link">
+            <img src="images/OGA cover.png" alt="MSc BAOR thesis thumbnail" />
+            <div class="project-body">
+              <h3>Comparing objective-guidance algorithms for one-dimensional planning problems</h3>
+              <p>MSc Business Analytics and Operations Research thesis.</p>
+            </div>
+          </a>
+        </article>
+
+
+        <article class="project-card" id="projects-books">
+          <a href="msc-economics.html" class="card-link">
+            <img src="images/Wash trading mechanisms coverimage.jpg" alt="MSc Economics project thumbnail" />
+            <div class="project-body">
+              <h3>Wash trading mechanisms</h3>
+              <p>MSc Financial Economics thesis</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="projects-books">
+          <a href="bsc-ebe.html" class="card-link">
+            <img src="images/Currency competition cover.png" alt="BSc thesis thumbnail" />
+            <div class="project-body">
+              <h3>Currency competition and price stability</h3>
+              <p>BSc Economie en Bedrijfseconomie thesis</p>
+            </div>
+          </a>
+        </article>
+
+
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Sietse van Meer</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
